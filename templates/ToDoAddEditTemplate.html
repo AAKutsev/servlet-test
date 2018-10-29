@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><#if toDoTask.getId() == -1>
+        Add Task To List
+        <#else>
+        Edit task ${toDoTask.getId()}
+    </#if>
+    </title>
+</head>
+<body>
+<form id="addOrEditTaskForm" method="post" action="/todolist/edit"       name="addOrEditTaskForm">
+    <input type="hidden" name="idTask" id="idTask" value="${toDoTask.getId()}"/>
+    <p><#if toDoTask.getId() == -1>
+        Add Task To List
+        <#else>
+        Edit task ${toDoTask.getId()}
+    </#if>
+    <table border=1>
+        <tr>
+            <th>Description</th>
+            <th>Due date</th>
+            <th>Priority</th>
+        </tr>
+        <tr><td><input name="description" value="${toDoTask.getTaskDescription()}"><td><input name="dueDate" value="${toDoTask.getDueDate()}"><td><input name="priority" value="${toDoTask.getPriority()}"><td><button content="Add" title="Add" onclick="document.addOrEditTaskForm.submit();"><#if toDoTask.getId() == -1>Add<#else>Save</#if></button>
+    </table>
+</body>
+</html>

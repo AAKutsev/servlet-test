@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDOList</title>
+</head>
+<body>
+<form id="editTaskForm" method="get" action="/todolist/edit"       name="editTaskForm">
+    <input type="hidden" name="idEditTask" id="idEditTask" value="-1"/>
+</form>
+
+<form  id="addTaskForm" method="get" action="/todolist/add"       name="addTaskForm">
+<p style="text-align: center"><button>Add task</button>
+</p>
+</form>
+
+<form id="deleteTaskForm" method="post" action="/todolist/delete"       name="deleteTaskForm">
+    <input type="hidden" name="idDeleteTask" id="idDeleteTask" value="-1"/>
+</form>
+    <p>ToDo items:
+    <table border=1>
+        <tr>
+            <th>Description</th>
+            <th>Due date</th>
+            <th>Priority</th>
+        </tr>
+        <#list tasks as toDoTask>
+        <tr><td>${toDoTask.getTaskDescription()}<td>${toDoTask.getDueDate()}<td>${toDoTask.getPriority()}<td onclick="document.getElementById('idDeleteTask').value='${toDoTask?index}';document.deleteTaskForm.submit();">x
+            <td onclick="document.getElementById('idEditTask').value='${toDoTask?index}';document.editTaskForm.submit();">Edit
+        </#list>
+    </table>
+</body>
+</html>
